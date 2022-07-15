@@ -1,0 +1,26 @@
+{
+	"name": "testing-phaser-ts",
+	"version": "1.0.0",
+	"description": "phaser game test",
+	"author": "alan alves",
+	"license": "MIT",
+	"scripts": {
+		"build": "parcel build src/index.html",
+		"postbuild": "cp -r src/assets/ dist/assets",
+		"start": "parcel src/index.html -p 3000 --no-cache ",
+		"lint": "eslint src/ --ext .ts"
+	},
+	"devDependencies": {
+		"@types/node": "^18.0.4",
+		"@typescript-eslint/eslint-plugin": "^5.30.6",
+		"@typescript-eslint/parser": "^5.30.6",
+		"eslint": "^8.19.0",
+		"parcel": "^2.6.2",
+		"parcel-plugin-static-files-copy": "^2.6.0",
+		"prettier": "^2.7.1",
+		"typescript": "^4.7.4"
+	},
+	"dependencies": {
+		"phaser": "^3.55.2"
+	}
+}
