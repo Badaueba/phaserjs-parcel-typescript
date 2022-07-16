@@ -7,7 +7,7 @@
 	"scripts": {
 		"build": "parcel build src/index.html",
 		"postbuild": "cp -r src/assets/ dist/assets",
-		"start": "parcel src/index.html -p 3000 --no-cache ",
+		"start": "yarn build && parcel src/index.html -p 3000 --no-cache ",
 		"test": "jest",
 		"lint": "eslint src/ --ext .ts"
 	},

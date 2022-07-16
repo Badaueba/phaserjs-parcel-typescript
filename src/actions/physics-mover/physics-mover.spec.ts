@@ -10,7 +10,6 @@ describe('Physics-Mover', () => {
 		mainScene = game.scene.getScene('Main');
 	});
 	it('main scene should be defined', () => {
-		console.log(JSON.stringify(mainScene));
 		expect(typeof mainScene).not.toBe(null);
 	});
 });

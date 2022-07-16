@@ -17,10 +17,8 @@ export class PhysicsMover {
 	place(col: number, row: number, facing: ALL_DIRECTIONS) {
 		const matrix: MatrixPosition = { col, row };
 
-		console.log(facing);
 		this.char.direction = facing;
-		console.log('dire', this.char.direction);
-		console.log(ANGLES.indexOf(facing));
+
 		this.char.angle = ANGLES.indexOf(facing);
 
 		const nextPosition = geometryHelper.matrixToVector(matrix);
