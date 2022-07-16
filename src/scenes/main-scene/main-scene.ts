@@ -4,7 +4,7 @@ import { PhysicsMover } from '../../actions/physics-mover/physics-mover';
 import { KeyboardController } from '../../controllers';
 
 import { IController } from '../../controllers/interfaces';
-import { DIRECTIONS, SpriteObject } from '../../game-object';
+import { ALL_DIRECTIONS, SpriteObject } from '../../game-object';
 import { MAP, ROBOT } from './map';
 
 export class MainScene extends Phaser.Scene {
@@ -43,7 +43,7 @@ export class MainScene extends Phaser.Scene {
 
 		this.robot.addAnimation({
 			scene: this,
-			key: DIRECTIONS.SOUTH,
+			key: ALL_DIRECTIONS.SOUTH,
 			startFrame: 0,
 			endFrame: 4,
 			frameRate: 10,
@@ -52,7 +52,7 @@ export class MainScene extends Phaser.Scene {
 
 		this.robot.addAnimation({
 			scene: this,
-			key: DIRECTIONS.NORTH,
+			key: ALL_DIRECTIONS.NORTH,
 			startFrame: 36,
 			endFrame: 40,
 			frameRate: 10,
@@ -61,7 +61,7 @@ export class MainScene extends Phaser.Scene {
 
 		this.robot.addAnimation({
 			scene: this,
-			key: DIRECTIONS.EAST,
+			key: ALL_DIRECTIONS.WEST,
 			startFrame: 9,
 			endFrame: 13,
 			frameRate: 10,
@@ -70,7 +70,7 @@ export class MainScene extends Phaser.Scene {
 
 		this.robot.addAnimation({
 			scene: this,
-			key: DIRECTIONS.WEST,
+			key: ALL_DIRECTIONS.EAST,
 			startFrame: 9,
 			endFrame: 13,
 			frameRate: 10,
@@ -78,10 +78,26 @@ export class MainScene extends Phaser.Scene {
 		});
 
 		this.physics.add.existing(this.robot);
+		this.gameCharacters.push(this.robot);
 
 		this.mover = new PhysicsMover(this, this.robot);
-		this.controller = new KeyboardController(this, this.robot, this.mover);
-		this.mover.place(0, 0, DIRECTIONS.EAST);
+		this.controller = new KeyboardController(this.robot, this.mover);
+		this.controller.init(this);
+
+		// this.mover.place(0, 0, ALL_DIRECTIONS.SOUTH);
+		// this.mover.move();
+		// this.mover.report();
+
+		// this.mover.place(0, 0, ALL_DIRECTIONS.SOUTH);
+		// this.mover.left();
+		// this.mover.report();
+
+		this.mover.place(1, 2, ALL_DIRECTIONS.EAST);
+		this.mover.move();
+		this.mover.move();
+		this.mover.right();
+		this.mover.move();
+		this.mover.report();
 	}
 
 	setupRoom() {

@@ -8,6 +8,7 @@
 		"sourceMap": false,
 		"noImplicitAny": true,
 		"strict": false,
+		"suppressImplicitAnyIndexErrors": true,
 		"paths": {
 			"@src/*": ["./src/"]
 		}

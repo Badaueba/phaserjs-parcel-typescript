@@ -1,4 +1,4 @@
-import { ANGLES, DIRECTIONS, SpriteObject } from '../../game-object';
+import { ALL_DIRECTIONS, ANGLES, SpriteObject } from '../../game-object';
 import { MAP } from '../../scenes';
 import geometryHelper from '../../shared/geometry-helper';
 import { MatrixPosition } from '../interfaces/mover.interface';
@@ -14,12 +14,15 @@ export class PhysicsMover {
 		this.target = new Phaser.Math.Vector2(this.char.x, this.char.y);
 	}
 
-	place(x: number, y: number, facing: string) {
-		this.target = new Phaser.Math.Vector2(x, y);
+	place(col: number, row: number, facing: ALL_DIRECTIONS) {
+		const matrix: MatrixPosition = { col, row };
 
-		const matrix: MatrixPosition = geometryHelper.vectorToMatrix(
-			this.target
-		);
+		console.log(facing);
+		this.char.direction = facing;
+		console.log('dire', this.char.direction);
+		console.log(ANGLES.indexOf(facing));
+		this.char.angle = ANGLES.indexOf(facing);
+
 		const nextPosition = geometryHelper.matrixToVector(matrix);
 
 		this.char.x = nextPosition.x;
@@ -32,36 +35,36 @@ export class PhysicsMover {
 		);
 
 		switch (this.char.direction) {
-			case DIRECTIONS.NORTH:
+			case ALL_DIRECTIONS.NORTH:
 				matrix.row -= 1;
 				break;
-			case DIRECTIONS.SOUTH:
+			case ALL_DIRECTIONS.SOUTH:
 				matrix.row += 1;
 				break;
 
-			case DIRECTIONS.EAST:
-				matrix.col -= 1;
+			case ALL_DIRECTIONS.EAST:
+				matrix.col += 1;
 				break;
 
-			case DIRECTIONS.WEST:
-				matrix.col += 1;
+			case ALL_DIRECTIONS.WEST:
+				matrix.col -= 1;
 				break;
 		}
 
 		if (matrix.row < 0 || matrix.row > MAP.level.height - 1) return;
 		if (matrix.col < 0 || matrix.col > MAP.level.width - 1) return;
 
-		const targetPosition = geometryHelper.matrixToVector(matrix);
-		this.place(targetPosition.x, targetPosition.y, this.char.direction);
+		// const targetPosition = geometryHelper.matrixToVector(matrix);
+		this.place(matrix.col, matrix.row, ALL_DIRECTIONS[this.char.direction]);
 	}
 
-	left(): void {
+	right(): void {
 		let angle = this.char.angle - 1;
 		if (angle < 0) angle = 3;
 		this.char.angle = angle;
 		this.char.direction = ANGLES[angle];
 	}
-	right(): void {
+	left(): void {
 		let angle = this.char.angle + 1;
 		if (angle > 3) angle = 0;
 		this.char.angle = angle;

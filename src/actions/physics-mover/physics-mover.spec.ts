@@ -1,0 +1,16 @@
+import { SpriteObject } from '../../game-object';
+import { Game, gameConfig } from '../../main';
+
+describe('Physics-Mover', () => {
+	let mainScene: Phaser.Scene;
+	let game: Phaser.Game;
+	let robot: Phaser.GameObjects.GameObject;
+	beforeEach(() => {
+		game = new Game({ ...gameConfig, type: Phaser.HEADLESS });
+		mainScene = game.scene.getScene('Main');
+	});
+	it('main scene should be defined', () => {
+		console.log(JSON.stringify(mainScene));
+		expect(typeof mainScene).not.toBe(null);
+	});
+});

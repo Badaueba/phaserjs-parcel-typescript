@@ -1,20 +1,22 @@
+import { ALL_DIRECTIONS, COMMANDS, ROTATIONS } from '../../game-object';
+
 class KeyBoardMap {
 	directions: Record<string, string> = {
-		w: 'NORTH',
-		s: 'SOUTH',
-		a: 'EAST',
-		d: 'WEST',
+		w: ALL_DIRECTIONS.NORTH,
+		s: ALL_DIRECTIONS.SOUTH,
+		a: ALL_DIRECTIONS.WEST,
+		d: ALL_DIRECTIONS.EAST,
 	};
 	rotation: Record<string, string> = {
-		q: 'ROTATE_LEFT',
-		e: 'ROTATE_RIGHT',
+		q: ROTATIONS.LEFT,
+		e: ROTATIONS.RIGHT,
 	};
 	walk: Record<string, string> = {
-		Enter: 'WALK',
+		Enter: COMMANDS.WALK,
 	};
 
 	UI: Record<string, string> = {
-		r: 'REPORT',
+		r: COMMANDS.REPORT,
 	};
 }
 

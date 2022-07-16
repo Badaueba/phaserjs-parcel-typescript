@@ -1,28 +1,10 @@
 import * as Phaser from 'phaser';
+import { ALL_DIRECTIONS } from './definitions';
 import { SpriteAnimDto, SpriteDto } from './dto/sprite-dto';
-
-export const DIRECTIONS: Record<string, string> = {
-	SOUTH: 'FACING_SOUTH',
-	NORTH: 'FACING_NORTH',
-	WEST: 'FACING_WEST',
-	EAST: 'FACING_EAST',
-};
-
-export const ANGLES = [
-	'FACING_SOUTH',
-	'FACING_WEST',
-	'FACING_NORTH',
-	'FACING_EAST',
-];
-
-export const ROTATIONS: Record<string, string> = {
-	RIGHT: 'ROTATE_RIGHT',
-	LEFT: 'ROTATE_LEFT',
-};
 
 export class SpriteObject extends Phaser.GameObjects.Sprite {
 	spriteName: string;
-	direction: string;
+	direction: ALL_DIRECTIONS;
 	angle: number;
 
 	constructor(dto: SpriteDto) {
@@ -31,7 +13,7 @@ export class SpriteObject extends Phaser.GameObjects.Sprite {
 		this.depth = dto.depth || 1;
 		this.setFrame(dto.frame || 0);
 		dto.scene.add.existing(this);
-		this.direction = DIRECTIONS.SOUTH;
+		this.direction = ALL_DIRECTIONS.SOUTH;
 		this.angle = 0;
 	}
 
@@ -48,6 +30,6 @@ export class SpriteObject extends Phaser.GameObjects.Sprite {
 	}
 
 	public adjustFlip() {
-		this.flipX = this.direction === DIRECTIONS.WEST ? true : false;
+		this.flipX = this.direction === ALL_DIRECTIONS.EAST ? true : false;
 	}
 }
