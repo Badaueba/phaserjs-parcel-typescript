@@ -83,21 +83,21 @@ export class MainScene extends Phaser.Scene {
 		this.mover = new PhysicsMover(this, this.robot);
 		this.controller = new KeyboardController(this.robot, this.mover);
 		this.controller.init(this);
+		this.mover.place(0, 0, ALL_DIRECTIONS.SOUTH);
 
-		// this.mover.place(0, 0, ALL_DIRECTIONS.SOUTH);
+		// // this.mover.move();
+		// // this.mover.report();
+
+		// // this.mover.place(0, 0, ALL_DIRECTIONS.SOUTH);
+		// // this.mover.left();
+		// // this.mover.report();
+
+		// this.mover.place(1, 2, ALL_DIRECTIONS.EAST);
+		// this.mover.move();
+		// this.mover.move();
+		// this.mover.right();
 		// this.mover.move();
 		// this.mover.report();
-
-		// this.mover.place(0, 0, ALL_DIRECTIONS.SOUTH);
-		// this.mover.left();
-		// this.mover.report();
-
-		this.mover.place(1, 2, ALL_DIRECTIONS.EAST);
-		this.mover.move();
-		this.mover.move();
-		this.mover.right();
-		this.mover.move();
-		this.mover.report();
 	}
 
 	setupRoom() {
