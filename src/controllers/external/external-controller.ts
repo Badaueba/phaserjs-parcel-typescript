@@ -4,6 +4,7 @@ import { IController } from '../interfaces/controller.interface';
 import { ExternalInputEvent, ExternalMap } from './external-maps';
 import * as PubNub from 'pubnub';
 import { v4 as uuid } from 'uuid';
+import 'dotenv/config';
 
 export class ExternalController implements IController {
 	char: SpriteObject;
@@ -17,9 +18,9 @@ export class ExternalController implements IController {
 
 	init(scece: Phaser.Scene) {
 		this.pubnub = new PubNub({
-			publishKey: 'pub-c-7bf6be3d-93de-4698-8a8b-7748f9d83368',
-			subscribeKey: 'sub-c-9137d9e4-e79a-4c83-860a-a6f6fd5a6070',
-			secretKey: 'sec-c-NmVkNWI3OWItZDgzMy00YWY5LTg3MDItZTgzZDM2NTE2NzRk',
+			publishKey: process.env.PUBLISH_KEY,
+			subscribeKey: String(process.env.SUBSCRIBE_KEY),
+			secretKey: process.env.SECRET_KEY,
 			uuid: uuid(),
 		});
 

@@ -3,13 +3,16 @@ import { CommandEvent } from './command';
 import { v4 as uuid } from 'uuid';
 const clear = require('clear');
 
+import 'dotenv/config';
+
+console.log(process.env.PUBLISH_KEY, process.env.SECRET_KEY);
 class Writer {
 	pubnub: PubNub;
 	constructor() {
 		this.pubnub = new PubNub({
-			publishKey: 'pub-c-7bf6be3d-93de-4698-8a8b-7748f9d83368',
-			subscribeKey: 'sub-c-9137d9e4-e79a-4c83-860a-a6f6fd5a6070',
-			secretKey: 'sec-c-NmVkNWI3OWItZDgzMy00YWY5LTg3MDItZTgzZDM2NTE2NzRk',
+			publishKey: process.env.PUBLISH_KEY,
+			subscribeKey: String(process.env.SUBSCRIBE_KEY),
+			secretKey: process.env.SECRET_KEY,
 			uuid: uuid(),
 		});
 
