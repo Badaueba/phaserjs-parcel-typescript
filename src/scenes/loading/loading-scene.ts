@@ -1,5 +1,6 @@
+import * as Phaser from 'phaser';
 import { Types } from 'phaser';
-import { MAP, ROBOT } from '../main-scene/map';
+import { MAP, ROBOT } from '../../config/levels';
 
 export class LoadingScene extends Phaser.Scene {
 	private loadingBar: Phaser.GameObjects.Graphics;

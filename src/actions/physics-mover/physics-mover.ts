@@ -1,5 +1,6 @@
+import { MAP } from '../../config/levels';
 import { ALL_DIRECTIONS, ANGLES, SpriteObject } from '../../game-object';
-import { MAP } from '../../scenes';
+
 import geometryHelper from '../../shared/geometry-helper';
 import { MatrixPosition } from '../interfaces/mover.interface';
 
@@ -52,7 +53,6 @@ export class PhysicsMover {
 		if (matrix.row < 0 || matrix.row > MAP.level.height - 1) return;
 		if (matrix.col < 0 || matrix.col > MAP.level.width - 1) return;
 
-		// const targetPosition = geometryHelper.matrixToVector(matrix);
 		this.place(matrix.col, matrix.row, ALL_DIRECTIONS[this.char.direction]);
 	}
 

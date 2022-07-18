@@ -9,11 +9,13 @@
 		"noImplicitAny": true,
 		"strict": false,
 		"suppressImplicitAnyIndexErrors": true,
+		"allowSyntheticDefaultImports": true,
 		"paths": {
-			"@src/*": ["./src/"]
+			"@src/*": ["./src/"],
+			"@cli/*": ["./cli/"]
 		}
 	},
 
 	"include": ["src/**/*.ts"],
-	"exclude": ["node_modules", "**/*.spec.ts"]
+	"exclude": ["node_modules", "**/*.spec.ts", "cli/*"]
 }

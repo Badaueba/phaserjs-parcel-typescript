@@ -1,4 +1,4 @@
 export interface IController {
 	init(scene: Phaser.Scene): void;
-	handleInput<T>(event: T): void;
+	handleInput(event: any): void;
 }

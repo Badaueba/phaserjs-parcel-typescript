@@ -1,17 +1,17 @@
 import * as Phaser from 'phaser';
 import { IMover } from '../../actions/interfaces/mover.interface';
 import { PhysicsMover } from '../../actions/physics-mover/physics-mover';
-import { KeyboardController } from '../../controllers';
+import { ExternalController, KeyboardController } from '../../controllers';
 
 import { IController } from '../../controllers/interfaces';
 import { ALL_DIRECTIONS, SpriteObject } from '../../game-object';
-import { MAP, ROBOT } from './map';
+import { MAP, ROBOT } from '../../config/levels';
 
 export class MainScene extends Phaser.Scene {
 	private level = MAP.level;
 	private gameCharacters: SpriteObject[] = [];
-	private environments: SpriteObject[] = [];
-	private controller: IController;
+	private keyboardController: IController;
+	private externalController: IController;
 	private mover: IMover;
 	robot: SpriteObject;
 
@@ -19,11 +19,25 @@ export class MainScene extends Phaser.Scene {
 		super({ key: 'Main' });
 	}
 
-	preload() {}
-
 	create() {
 		this.setupRoom();
 		this.setupPlayer();
+	}
+
+	setupRoom() {
+		for (let row = 0; row < this.level.height; row++) {
+			for (let col = 0; col < this.level.height; col++) {
+				const bloc = new SpriteObject({
+					scene: this,
+					x: col * this.level.tileSizeW,
+					y: row * this.level.tileSizeH,
+					spriteName: 'block-tiles',
+					frame: 5,
+					depth: 1,
+				});
+				bloc.setOrigin(0, 0);
+			}
+		}
 	}
 
 	setupPlayer() {
@@ -81,25 +95,17 @@ export class MainScene extends Phaser.Scene {
 		this.gameCharacters.push(this.robot);
 
 		this.mover = new PhysicsMover(this, this.robot);
-		this.controller = new KeyboardController(this.robot, this.mover);
-		this.controller.init(this);
+		this.keyboardController = new KeyboardController(
+			this.robot,
+			this.mover
+		);
+		this.externalController = new ExternalController(
+			this.robot,
+			this.mover
+		);
+		this.keyboardController.init(this);
+		this.externalController.init(this);
 		this.mover.place(0, 0, ALL_DIRECTIONS.SOUTH);
-	}
-
-	setupRoom() {
-		for (let row = 0; row < this.level.height; row++) {
-			for (let col = 0; col < this.level.height; col++) {
-				const bloc = new SpriteObject({
-					scene: this,
-					x: col * this.level.tileSizeW,
-					y: row * this.level.tileSizeH,
-					spriteName: 'block-tiles',
-					frame: 5,
-					depth: 1,
-				});
-				bloc.setOrigin(0, 0);
-			}
-		}
 	}
 
 	update(time: number, delta: number): void {

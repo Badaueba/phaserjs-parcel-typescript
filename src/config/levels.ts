@@ -1,9 +1,14 @@
+import { join, resolve } from 'path';
+
+const blocPath = join(resolve('./'), '/assets/block-tiles.jpg');
+const robotPath = join(resolve('./'), '/assets/robot-tiles.png');
+
 export const MAP = {
 	gameWidth: 626,
 	gameHeight: 626,
 	level: {
 		assets: {
-			'block-tiles': 'assets/block-tiles.jpg',
+			'block-tiles': blocPath,
 		},
 		tileSizeW: 125.2,
 		tileSizeH: 125.2,
@@ -23,7 +28,7 @@ export const MAP = {
 export const ROBOT = {
 	key: 'robot',
 	assets: {
-		robot: 'assets/robot-tiles.png',
+		robot: robotPath,
 	},
 	tileSizeW: 150,
 	tileSizeH: 150,

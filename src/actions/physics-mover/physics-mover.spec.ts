@@ -1,5 +1,5 @@
-import { SpriteObject } from '../../game-object';
-import { Game, gameConfig } from '../../main';
+import { gameConfig } from '../../config';
+import { Game } from '../../main';
 
 describe('Physics-Mover', () => {
 	let mainScene: Phaser.Scene;

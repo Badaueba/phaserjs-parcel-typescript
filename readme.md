@@ -9,6 +9,9 @@
 -   Phaser game engine
 -   Parcel Web bundler
 -   Typescript
+-   Jest
+-   Enquirer
+-   PubNub
 
 ## Run:
 
@@ -44,6 +47,14 @@ yarn start
 
      ENTER = ROBOT WALK 1 UNIT
      R = console.log(robot col, robot row, robot facing)
+
+```
+
+-   ## RUN CLI
+
+```
+    # using another terminal window run:
+    yarn cli
 
 ```
 

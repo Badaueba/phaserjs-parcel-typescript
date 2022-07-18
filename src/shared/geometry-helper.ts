@@ -1,6 +1,6 @@
 import * as Phaser from 'phaser';
 import { MatrixPosition } from '../actions/interfaces/mover.interface';
-import { MAP } from '../scenes';
+import { MAP } from '../config/levels';
 
 export class GeometryHelper {
 	public vectorToMatrix(target: Phaser.Math.Vector2): MatrixPosition {

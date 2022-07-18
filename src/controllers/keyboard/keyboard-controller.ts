@@ -18,14 +18,10 @@ export class KeyboardController {
 	}
 
 	init(scene: Phaser.Scene) {
-		scene.input.keyboard.on(
-			'keydown',
-			this.handleInput<KeyboardEvent>,
-			this
-		);
+		scene.input.keyboard.on('keydown', this.handleInput, this);
 	}
 
-	handleInput<T>(evt: any) {
+	handleInput(evt: any) {
 		const event = evt as KeyboardEvent;
 		const direction = KeyBoardMap.directions[event.key];
 		if (direction) {
