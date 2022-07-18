@@ -1,6 +1,6 @@
 # Phaser 3 + Parcel + Typescript
 
-![](https://i.imgur.com/2qhLoPI.gif)
+![](https://i.imgur.com/yseIkME.gif)
 
 ## Dependencies:
 
