@@ -4,7 +4,6 @@ import { IController } from '../interfaces/controller.interface';
 import { ExternalInputEvent, ExternalMap } from './external-maps';
 import * as PubNub from 'pubnub';
 import { v4 as uuid } from 'uuid';
-import 'dotenv/config';
 
 export class ExternalController implements IController {
 	char: SpriteObject;

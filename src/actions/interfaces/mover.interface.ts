@@ -8,7 +8,7 @@ export interface IMover {
 	move(): void;
 	left(): void;
 	right(): void;
-	report(): void;
+	report(): string;
 }
 
 export class MatrixPosition {

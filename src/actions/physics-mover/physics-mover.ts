@@ -26,6 +26,7 @@ export class PhysicsMover {
 
 		this.char.x = nextPosition.x;
 		this.char.y = nextPosition.y;
+		MAP.level.uiState.userText = `PLACE ${col}, ${row} ${facing}`;
 	}
 
 	move() {
@@ -69,10 +70,13 @@ export class PhysicsMover {
 		this.char.direction = ANGLES[angle];
 	}
 
-	report(): void {
+	report(): string {
 		const matrix = geometryHelper.vectorToMatrix(
 			new Phaser.Math.Vector2(this.char.x, this.char.y)
 		);
-		console.log(`${matrix.col}, ${matrix.row}, ${this.char.direction}`);
+		const text = `${matrix.col}, ${matrix.row}, ${this.char.direction}`;
+		MAP.level.uiState.userText = text;
+		console.log(text);
+		return text;
 	}
 }

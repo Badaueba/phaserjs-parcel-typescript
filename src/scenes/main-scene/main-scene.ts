@@ -4,7 +4,7 @@ import { PhysicsMover } from '../../actions/physics-mover/physics-mover';
 import { ExternalController, KeyboardController } from '../../controllers';
 
 import { IController } from '../../controllers/interfaces';
-import { ALL_DIRECTIONS, SpriteObject } from '../../game-object';
+import { ALL_DIRECTIONS, SpriteObject, UiText } from '../../game-object';
 import { MAP, ROBOT } from '../../config/levels';
 
 export class MainScene extends Phaser.Scene {
@@ -13,6 +13,7 @@ export class MainScene extends Phaser.Scene {
 	private keyboardController: IController;
 	private externalController: IController;
 	private mover: IMover;
+	private uiText: UiText;
 	robot: SpriteObject;
 
 	constructor() {
@@ -41,19 +42,16 @@ export class MainScene extends Phaser.Scene {
 	}
 
 	setupPlayer() {
-		const initX = MAP.gameWidth / 2;
-		const initY = MAP.gameHeight / 2;
-
 		this.robot = new SpriteObject({
 			scene: this,
-			x: initX,
-			y: initY,
+			x: 0,
+			y: 0,
 			spriteName: ROBOT.key,
 			frame: 0,
 			depth: 20,
 		});
 
-		this.robot.setOrigin(0, 0);
+		this.robot.setOrigin(0.09, 0);
 
 		this.robot.addAnimation({
 			scene: this,
@@ -106,10 +104,23 @@ export class MainScene extends Phaser.Scene {
 		this.keyboardController.init(this);
 		this.externalController.init(this);
 		this.mover.place(0, 0, ALL_DIRECTIONS.SOUTH);
+
+		this.uiText = new UiText(this, {
+			x: 50,
+			y: 580,
+			text: MAP.level.uiState.userText,
+			persistent: false,
+			style: {
+				font: '25px Arial Black',
+				fill: '#000',
+				tabs: 20,
+			},
+		});
 	}
 
 	update(time: number, delta: number): void {
 		this.robot.play(this.robot.direction, true);
 		this.robot.adjustFlip();
+		this.uiText.update();
 	}
 }
